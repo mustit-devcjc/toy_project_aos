@@ -1,0 +1,54 @@
+package dev.chu.toyapp.data.repository
+
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
+import dev.chu.toyapp.data.remote.Api
+import dev.chu.toyapp.data.remote.ApiService
+import dev.chu.toyapp.entity.Users
+import dev.chu.toyapp.etc.extensions.TAG
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class UserRepository {
+    var isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    private val api: ApiService = Api().createService(ApiService::class.java)
+    private var _listUsers: MutableLiveData<List<Users>> = MutableLiveData()
+
+    val listUsers: LiveData<List<Users>>
+        get() = _listUsers
+
+    fun getSearchUsers(q: String) {
+        isLoading.value = true
+
+        api.getSearchUsers(q)
+            .enqueue(object : Callback<JsonObject> {
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    Log.e(TAG, "getSearchUsers onFailure ${t.printStackTrace()}")
+                    _listUsers.postValue(null)
+                    isLoading.value = false
+                }
+
+                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                    if (response.isSuccessful) {
+                        Log.d(TAG, "getSearchUsers onResponse isSuccessful")
+
+                        val it = response.body()?.getAsJsonArray("items")
+                        val type = object : TypeToken<List<Users>>() {}.type
+                        val result =
+                            GsonBuilder().setLenient().create().fromJson(it, type) as List<Users>
+
+                        _listUsers.postValue(result)
+                    } else {
+                        Log.d(TAG, "getRepositories onResponse")
+                    }
+                    isLoading.value = false
+                }
+            })
+    }
+}

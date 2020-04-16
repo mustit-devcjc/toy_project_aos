@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ToyApp</string>
+
+    <string name="splash_activity">SplashActivity</string>
+    <string name="main_activity">MainActivity</string>
+    <string name="detail_activity">DetailActivity</string>
+    <string name="search_activity">SearchActivity</string>
+
+    <string name="main_et_hint">Application Name</string>
+
+    <string name="back_pressed_message">한번 더 누르면 종료됩니다.</string>
+
+    <string name="title_repos">repos</string>
+    <string name="title_users">users</string>
+
+    <string name="top_100">Top 100</string>
+</resources>
