@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <EditText
         android:id="@+id/users_et"
         style="@style/custom_et"
         android:layout_width="0dp"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/users_iv"
         android:layout_width="@dimen/dimen_50dp"
         android:layout_height="0dp"

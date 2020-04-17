@@ -1,6 +1,5 @@
 package dev.chu.toyapp.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,15 +7,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import dev.chu.toyapp.R
 import dev.chu.toyapp.base.BaseFragment
-import dev.chu.toyapp.common.Const
 import dev.chu.toyapp.etc.extensions.TAG
-import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity
 import dev.chu.toyapp.ui.main.adapter.UsersAdapter
 import dev.chu.toyapp.ui.user_repos.UserReposActivity
 
