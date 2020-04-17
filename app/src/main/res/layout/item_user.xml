@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="dev.chu.toyapp.entity.GithubRepos" />
+            type="dev.chu.toyapp.entity.Users" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,55 +16,44 @@
         android:padding="@dimen/dimen_20dp">
 
         <ImageView
-            android:id="@+id/repo_iv"
+            android:id="@+id/user_iv"
             android:layout_width="@dimen/dimen_50dp"
             android:layout_height="@dimen/dimen_50dp"
-            app:srcGlideCircle="@{item.owner.avatarUrl}"
+            app:srcGlideCircle="@{item.avatarUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_foreground" />
 
         <TextView
-            android:id="@+id/repo_tv_title"
+            android:id="@+id/user_tv_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_10dp"
             android:layout_marginEnd="@dimen/dimen_10dp"
-            android:text="@{item.name}"
+            android:text="@{item.login}"
             android:textColor="@android:color/black"
             android:textSize="@dimen/dimen_20sp"
-            app:layout_constraintBottom_toTopOf="@id/repo_tv_content"
-            app:layout_constraintEnd_toStartOf="@id/repo_tv_time"
-            app:layout_constraintStart_toEndOf="@id/repo_iv"
+            app:layout_constraintBottom_toTopOf="@id/user_tv_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/user_iv"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Sample Title" />
 
         <TextView
-            android:id="@+id/repo_tv_content"
+            android:id="@+id/user_tv_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_10dp"
             android:layout_marginEnd="@dimen/dimen_10dp"
-            android:text="@{item.fullName + `(`+item.language+`)`}"
+            android:text="@{item.url}"
             android:textColor="@color/color_4A4A4A"
             android:textSize="@dimen/dimen_15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/repo_iv"
-            app:layout_constraintTop_toBottomOf="@id/repo_tv_title"
+            app:layout_constraintStart_toEndOf="@id/user_iv"
+            app:layout_constraintTop_toBottomOf="@id/user_tv_title"
             tools:text="Sample Content" />
-
-        <TextView
-            android:id="@+id/repo_tv_time"
-            android:layout_width="@dimen/dimen_100dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/dimen_12sp"
-            android:text="@{item.updatedAt.toString().split(`GMT`)[0]}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/repo_tv_title"
-            app:layout_constraintTop_toTopOf="@id/repo_tv_title"
-            tools:text="10:56 AM" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

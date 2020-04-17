@@ -1,69 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/repos_et"
-        style="@style/custom_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/main_et_hint"
-        android:inputType="text"
-        app:layout_constraintEnd_toStartOf="@id/repos_iv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:id="@+id/repos_iv"
-        android:layout_width="@dimen/dimen_50dp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_search_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/repos_et"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/repos_et" />
+        <variable
+            name="reposVM"
+            type="dev.chu.toyapp.ui.main.ReposViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/repos_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dimen_20dp"
-        android:paddingTop="@dimen/dimen_10dp"
-        android:paddingEnd="@dimen/dimen_20dp"
-        android:paddingBottom="@dimen/dimen_10dp"
-        android:text="@string/top_100"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/dimen_30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/repos_et" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/repos_rv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/repos_tv"
-        tools:listitem="@layout/item_repo" />
+        <EditText
+            android:id="@+id/repos_et"
+            style="@style/custom_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/main_et_hint"
+            android:text="@={reposVM.searchUserNameForFilter}"
+            android:inputType="text"
+            app:layout_constraintEnd_toStartOf="@id/repos_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/repos_pb"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        <ImageView
+            android:id="@+id/repos_iv"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_search_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/repos_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/repos_et" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/repos_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dimen_20dp"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingEnd="@dimen/dimen_20dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:text="@string/top_100"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/dimen_30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repos_et" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repos_rv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:data="@{reposVM.githubRepos}"
+            android:filterText="@{reposVM.searchUserNameForFilter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/repos_tv"
+            tools:listitem="@layout/item_repo" />
+
+        <ProgressBar
+            android:id="@+id/repos_pb"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:setVisibility="@{reposVM.isLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

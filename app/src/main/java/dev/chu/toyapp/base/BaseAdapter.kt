@@ -2,7 +2,7 @@ package dev.chu.toyapp.base
 
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T, VH: BaseViewHolder>(val items: MutableList<T>) : RecyclerView.Adapter<BaseViewHolder>() {
+abstract class BaseAdapter<T, VH: BaseViewHolder<*>>(val items: MutableList<T>) : RecyclerView.Adapter<BaseViewHolder<*>>() {
     open fun setNewItems(newItems: List<T>) {
         items.clear()
         items.addAll(newItems)

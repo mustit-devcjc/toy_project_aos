@@ -11,5 +11,9 @@ class UserReposViewModel : ViewModel() {
     val listUserRepos: LiveData<List<GithubRepos>>
         get() = repo.listUserRepos
 
-    fun getUserRepos(user: String) = repo.getUserRepos(user)
+    var userName: String = ""
+        set(value) {
+            field = value
+            repo.getUserRepos(field)
+        }
 }
