@@ -1,6 +1,7 @@
 package dev.chu.toyapp.ui.main
 
 import androidx.lifecycle.*
+import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.data.repository.ReposRepository
 import dev.chu.toyapp.entity.GithubRepos
 
@@ -12,7 +13,7 @@ class ReposViewModel : ViewModel() {
         repo.getRepositories()
     }
 
-    val isLoading: LiveData<Boolean>
+    val isLoading: LiveData<LoadingState>
         get() = repo.isLoading
 
     val githubRepos: LiveData<List<GithubRepos>>

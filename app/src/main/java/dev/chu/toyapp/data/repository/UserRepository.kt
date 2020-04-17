@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
+import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.data.remote.Api
 import dev.chu.toyapp.data.remote.ApiService
 import dev.chu.toyapp.entity.Users
@@ -15,7 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserRepository {
-    var isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+    var isLoading: MutableLiveData<LoadingState> = MutableLiveData(LoadingState.SUCCESS)
 
     private val api: ApiService = Api().createService(ApiService::class.java)
     private var _listUsers: MutableLiveData<List<Users>> = MutableLiveData()
@@ -24,14 +25,14 @@ class UserRepository {
         get() = _listUsers
 
     fun getSearchUsers(q: String) {
-        isLoading.value = true
+        isLoading.postValue(LoadingState.LOADING)
 
         api.getSearchUsers(q)
             .enqueue(object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Log.e(TAG, "getSearchUsers onFailure ${t.printStackTrace()}")
                     _listUsers.postValue(null)
-                    isLoading.value = false
+                    isLoading.postValue(LoadingState.error(t.message))
                 }
 
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -44,10 +45,11 @@ class UserRepository {
                             GsonBuilder().setLenient().create().fromJson(it, type) as List<Users>
 
                         _listUsers.postValue(result)
+                        isLoading.postValue(LoadingState.SUCCESS)
                     } else {
                         Log.d(TAG, "getRepositories onResponse")
+                        isLoading.postValue(LoadingState.error(response.message()))
                     }
-                    isLoading.value = false
                 }
             })
     }

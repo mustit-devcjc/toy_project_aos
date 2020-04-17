@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import dev.chu.toyapp.R
 import dev.chu.toyapp.base.BaseFragment
+import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.etc.extensions.TAG
 import dev.chu.toyapp.ui.main.adapter.ReposAdapter
 import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity
@@ -60,7 +61,11 @@ class ReposFragment : BaseFragment() {
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
-            reposPb.visibility = if (it) View.VISIBLE else View.GONE
+            reposPb.visibility = when(it.status) {
+                LoadingState.Status.SUCCESS -> View.GONE
+                LoadingState.Status.LOADING -> View.VISIBLE
+                LoadingState.Status.FAILED -> View.GONE
+            }
         })
 
         viewModel.githubRepos.observe(viewLifecycleOwner, Observer {

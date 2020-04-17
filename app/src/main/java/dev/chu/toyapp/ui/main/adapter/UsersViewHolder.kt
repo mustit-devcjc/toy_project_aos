@@ -14,10 +14,9 @@ import dev.chu.toyapp.etc.GlideApp
 
 class UsersViewHolder(view: View, private val callback:(Users) -> Unit) : BaseViewHolder(view) {
 
-    private val ivAvatar = itemView.findViewById<ImageView>(R.id.repo_iv)
-    private val tvTitle = itemView.findViewById<TextView>(R.id.repo_tv_title)
-    private val tvContent = itemView.findViewById<TextView>(R.id.repo_tv_content)
-    private val tvTime = itemView.findViewById<TextView>(R.id.repo_tv_time)
+    private val ivAvatar = itemView.findViewById<ImageView>(R.id.user_iv)
+    private val tvTitle = itemView.findViewById<TextView>(R.id.user_tv_title)
+    private val tvContent = itemView.findViewById<TextView>(R.id.user_tv_content)
     
     override fun bind(item: Any) {
         val data = item as Users
@@ -31,7 +30,6 @@ class UsersViewHolder(view: View, private val callback:(Users) -> Unit) : BaseVi
 
         tvTitle.text = data.login
         tvContent.text = data.url
-        tvTime.visibility = View.GONE
 
         itemView.setOnClickListener {
             callback(data)

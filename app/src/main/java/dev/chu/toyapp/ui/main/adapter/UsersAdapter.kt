@@ -13,8 +13,8 @@ class UsersAdapter(
 ) : BaseAdapter<Users, UsersViewHolder>(items) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false)
-        return UsersViewHolder(inflater, callback)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+        return UsersViewHolder(view, callback)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {

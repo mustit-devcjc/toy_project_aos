@@ -6,6 +6,8 @@ import dev.chu.toyapp.R
 import dev.chu.toyapp.base.BaseAdapter
 import dev.chu.toyapp.base.BaseViewHolder
 import dev.chu.toyapp.entity.GithubRepos
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ReposAdapter(
     items: MutableList<GithubRepos>,
@@ -26,9 +28,9 @@ class ReposAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        val inflater =
+        val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_repo, parent, false)
-        return ReposViewHolder(inflater, callback)
+        return ReposViewHolder(view, callback)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
@@ -44,7 +46,7 @@ class ReposAdapter(
         } else {
             for (mainItem in arrayList) {
                 val item = mainItem.name
-                if (item!!.toLowerCase().contains(charText)) {
+                if (item.toLowerCase(Locale.getDefault()).contains(charText)) {
                     itemList.add(mainItem)
                 }
             }

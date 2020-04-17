@@ -21,7 +21,7 @@ import dev.chu.toyapp.etc.extensions.TAG
 class RepoDetailActivity : BaseActivity() {
 
     @LayoutRes
-    override fun getLayoutRes(): Int = R.layout.activity_detail
+    override fun getLayoutRes(): Int = R.layout.activity_repo_detail
 
     companion object {
         fun newIntent(context: Context, repos: GithubRepos) =

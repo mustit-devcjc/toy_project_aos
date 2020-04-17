@@ -2,6 +2,7 @@ package dev.chu.toyapp.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.data.repository.UserRepository
 import dev.chu.toyapp.entity.Users
 
@@ -9,7 +10,7 @@ class UsersViewModel : ViewModel() {
 
     private val repo by lazy { UserRepository() }
 
-    val isLoading: LiveData<Boolean>
+    val isLoading: LiveData<LoadingState>
         get() = repo.isLoading
 
     val listUsers: LiveData<List<Users>>

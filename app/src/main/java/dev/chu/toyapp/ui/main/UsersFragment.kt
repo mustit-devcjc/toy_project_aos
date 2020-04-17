@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import dev.chu.toyapp.R
 import dev.chu.toyapp.base.BaseFragment
+import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.etc.extensions.TAG
 import dev.chu.toyapp.ui.main.adapter.UsersAdapter
 import dev.chu.toyapp.ui.user_repos.UserReposActivity
@@ -61,7 +62,11 @@ class UsersFragment : BaseFragment() {
 
     private fun observeViewModel() {
         viewModel.isLoading.observe(viewLifecycleOwner, Observer {
-            usersPb.visibility = if (it) View.VISIBLE else View.GONE
+            usersPb.visibility = when(it.status) {
+                LoadingState.Status.SUCCESS -> View.GONE
+                LoadingState.Status.LOADING -> View.VISIBLE
+                LoadingState.Status.FAILED -> View.GONE
+            }
         })
 
 

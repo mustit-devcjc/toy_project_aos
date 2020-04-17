@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.reflect.TypeToken
+import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.data.remote.Api
 import dev.chu.toyapp.data.remote.ApiService
 import dev.chu.toyapp.entity.GithubRepos
@@ -15,7 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserReposRepository {
-    var isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+    var isLoading: MutableLiveData<LoadingState> = MutableLiveData(LoadingState.SUCCESS)
 
     private val api: ApiService = Api().createService(ApiService::class.java)
     private var _listUserRepos: MutableLiveData<List<GithubRepos>> = MutableLiveData()
@@ -24,7 +25,7 @@ class UserReposRepository {
         get() = _listUserRepos
 
     fun getUserRepos(user: String) {
-        isLoading.value = true
+        isLoading.postValue(LoadingState.LOADING)
 
         api.getUserRepos(user)
             .enqueue(object : Callback<JsonArray> {
@@ -32,7 +33,7 @@ class UserReposRepository {
                     Log.e(TAG, "getUserRepos onFailure")
                     t.printStackTrace()
                     _listUserRepos.postValue(null)
-                    isLoading.value = false
+                    isLoading.postValue(LoadingState.error(t.message))
                 }
 
                 override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
@@ -45,10 +46,11 @@ class UserReposRepository {
                             GsonBuilder().setLenient().create().fromJson(it, type) as List<GithubRepos>
 
                         _listUserRepos.postValue(result)
+                        isLoading.postValue(LoadingState.SUCCESS)
                     } else {
                         Log.d(TAG, "getUserRepos onResponse")
+                        isLoading.postValue(LoadingState.error(response.message()))
                     }
-                    isLoading.value = false
                 }
             })
     }
