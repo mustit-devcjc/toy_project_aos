@@ -1,10 +1,13 @@
 package dev.chu.toyapp.ui.repo_detail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.core.os.bundleOf
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
@@ -19,6 +22,13 @@ class RepoDetailActivity : BaseActivity() {
 
     @LayoutRes
     override fun getLayoutRes(): Int = R.layout.activity_detail
+
+    companion object {
+        fun newIntent(context: Context, repos: GithubRepos) =
+            Intent(context, RepoDetailActivity::class.java).apply {
+                putExtra(Const.EXTRA.USER_INFO, bundleOf(Const.ARGS.REPOS to repos))
+            }
+    }
 
     private lateinit var detailIv: ImageView
     private lateinit var detailTvName: TextView

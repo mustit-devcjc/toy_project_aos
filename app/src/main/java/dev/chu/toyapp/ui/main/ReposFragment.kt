@@ -1,6 +1,5 @@
 package dev.chu.toyapp.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,17 +7,15 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import dev.chu.toyapp.R
 import dev.chu.toyapp.base.BaseFragment
-import dev.chu.toyapp.common.Const
 import dev.chu.toyapp.etc.extensions.TAG
-import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity
 import dev.chu.toyapp.ui.main.adapter.ReposAdapter
+import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity
 
 class ReposFragment : BaseFragment() {
     @LayoutRes
@@ -56,9 +53,7 @@ class ReposFragment : BaseFragment() {
 
     private fun setRecyclerView() {
         adapter = ReposAdapter(mutableListOf()) { repos ->
-            startActivity(Intent(context, RepoDetailActivity::class.java).apply {
-                putExtra(Const.EXTRA.USER_INFO, bundleOf(Const.ARGS.REPOS to repos))
-            })
+            startActivity(RepoDetailActivity.newIntent(context!!, repos))
         }
         reposRv.adapter = adapter
     }

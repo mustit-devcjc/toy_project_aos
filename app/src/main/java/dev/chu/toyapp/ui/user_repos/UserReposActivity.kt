@@ -1,10 +1,10 @@
 package dev.chu.toyapp.ui.user_repos
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.LayoutRes
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +18,13 @@ import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity
 class UserReposActivity : BaseActivity() {
     @LayoutRes
     override fun getLayoutRes(): Int = R.layout.activity_user_repos
+
+    companion object {
+        fun newIntent(context: Context, login: String) =
+            Intent(context, UserReposActivity::class.java).apply {
+                putExtra(Const.EXTRA.USER_NAME, login)
+            }
+    }
 
     private val userReposVM by lazy { ViewModelProvider(this)[UserReposViewModel::class.java] }
 
@@ -38,9 +45,7 @@ class UserReposActivity : BaseActivity() {
 
     private fun setRecyclerView() {
         adapter = ReposAdapter(mutableListOf()) { repos ->
-            startActivity(Intent(this, RepoDetailActivity::class.java).apply {
-                putExtra(Const.EXTRA.USER_INFO, bundleOf(Const.ARGS.REPOS to repos))
-            })
+            startActivity(RepoDetailActivity.newIntent(this, repos))
         }
         rv.adapter = adapter
     }

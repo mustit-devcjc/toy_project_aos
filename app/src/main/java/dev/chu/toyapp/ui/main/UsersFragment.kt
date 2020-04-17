@@ -58,9 +58,7 @@ class UsersFragment : BaseFragment() {
     private fun setRecyclerView() {
         adapter =
             UsersAdapter(mutableListOf()) { repos ->
-                startActivity(Intent(context, UserReposActivity::class.java).apply {
-                    putExtra(Const.EXTRA.USER_NAME, repos.login)
-                })
+                startActivity(UserReposActivity.newIntent(context!!, repos.login))
             }
         usersRv.adapter = adapter
     }
