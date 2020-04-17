@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class ReposRepository {
 
-    var isLoading: MutableLiveData<LoadingState> = MutableLiveData()
+    var isLoading: MutableLiveData<LoadingState> = MutableLiveData(LoadingState.SUCCESS)
 
     private val api: ApiService = Api().createService(ApiService::class.java)
     private var _listGithubRepos: MutableLiveData<List<GithubRepos>> = MutableLiveData()
