@@ -1,7 +1,10 @@
 package dev.chu.toyapp.common
 
+import dev.chu.toyapp.GlobalApplication
+import dev.chu.toyapp.R
+
 object Const {
-    const val BASE_URL = "https://api.github.com/"
+    var BASE_URL: String = GlobalApplication.getInstance().resources.getString(R.string.server_url)
 
     object EXTRA {
         const val USER_NAME = "USER_NAME"
