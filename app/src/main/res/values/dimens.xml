@@ -7,6 +7,7 @@
     <dimen name="dimen_25sp">25sp</dimen>
     <dimen name="dimen_30sp">30sp</dimen>
 
+    <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="dimen_10dp">10dp</dimen>
     <dimen name="dimen_20dp">20dp</dimen>
     <dimen name="dimen_45dp">45dp</dimen>

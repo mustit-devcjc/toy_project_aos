@@ -9,10 +9,11 @@
             type="dev.chu.toyapp.entity.GithubRepos" />
     </data>
 
+<!--    android:onClickEvent="@{item}"-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClickEvent="@{item}"
+        android:id="@+id/repo_container"
         android:padding="@dimen/dimen_20dp">
 
         <ImageView
