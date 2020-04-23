@@ -56,25 +56,9 @@ class MainActivity : DatabindingActivity() {
         applyExitMaterialTransform()
         super.onCreate(savedInstanceState)
 
+        binding.activity = this@MainActivity
+
         replaceFragment(binding.mainFl.id, ReposFragment())
-        setBottomNavigationView()
-    }
-
-    private fun setBottomNavigationView() {
-        binding.mainBnv.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_repos -> {
-                    replaceFragment(R.id.main_fl, ReposFragment())
-                    return@setOnNavigationItemSelectedListener true
-                }
-
-                R.id.navigation_users -> {
-                    replaceFragment(R.id.main_fl, UsersFragment.newInstance())
-                    return@setOnNavigationItemSelectedListener true
-                }
-            }
-            return@setOnNavigationItemSelectedListener false
-        }
     }
 
     override fun onBackPressed() {

@@ -13,12 +13,17 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import dev.chu.toyapp.R
 import dev.chu.toyapp.common.Const
 import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.entity.GithubRepos
 import dev.chu.toyapp.entity.Users
+import dev.chu.toyapp.etc.extensions.replaceFragment
 import dev.chu.toyapp.etc.extensions.simpleToolbarWithHome
 import dev.chu.toyapp.etc.extensions.startActivity
+import dev.chu.toyapp.ui.main.ReposFragment
+import dev.chu.toyapp.ui.main.UsersFragment
 import dev.chu.toyapp.ui.main.adapter.ReposAdapter
 import dev.chu.toyapp.ui.main.adapter.UsersAdapter
 import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity
@@ -121,6 +126,25 @@ object BindingAdapter {
                 LoadingState.Status.LOADING -> true
                 LoadingState.Status.FAILED -> false
             }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:bnvItemSelectedListener")
+    fun BottomNavigationView.setItemSelectedListener(activity: AppCompatActivity) {
+        this.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_repos -> {
+                    activity.replaceFragment(R.id.main_fl, ReposFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
+
+                R.id.navigation_users -> {
+                    activity.replaceFragment(R.id.main_fl, UsersFragment.newInstance())
+                    return@setOnNavigationItemSelectedListener true
+                }
+            }
+            return@setOnNavigationItemSelectedListener false
         }
     }
 
