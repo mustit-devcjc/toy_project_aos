@@ -17,7 +17,7 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(getLayoutRes())
+
         binding = DataBindingUtil.setContentView(this, getLayoutRes())
         binding.lifecycleOwner = this
 

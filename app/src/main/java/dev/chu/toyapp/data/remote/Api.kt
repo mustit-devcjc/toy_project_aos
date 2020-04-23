@@ -1,14 +1,8 @@
 package dev.chu.toyapp.data.remote
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
 import android.net.ConnectivityManager
-import android.os.Build
-import android.os.Environment
 import android.util.Log
-import androidx.core.app.ActivityCompat
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import dev.chu.toyapp.BuildConfig

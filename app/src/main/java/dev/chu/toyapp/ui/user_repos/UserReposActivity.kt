@@ -19,9 +19,7 @@ class UserReposActivity : BaseActivity<ActivityUserReposBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         Log.i(TAG, "initView")
 
-        binding.apply {
-            vm = userReposVM
-        }
+        binding.vm = userReposVM
 
         userReposVM.userName = intent.getStringExtra(Const.EXTRA.USER_NAME) ?: "JC-Choo"
     }
