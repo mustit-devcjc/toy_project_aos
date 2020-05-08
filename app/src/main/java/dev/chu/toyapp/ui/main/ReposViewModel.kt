@@ -1,7 +1,7 @@
 package dev.chu.toyapp.ui.main
 
 import androidx.lifecycle.*
-import dev.chu.toyapp.data.LoadingState
+import dev.chu.datamodule.LoadingState
 import dev.chu.toyapp.data.repository.ReposRepository
 import dev.chu.toyapp.entity.GithubRepos
 

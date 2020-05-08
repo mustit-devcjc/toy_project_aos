@@ -5,8 +5,8 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
+import dev.chu.basemodule.BaseFragment
 import dev.chu.toyapp.R
-import dev.chu.toyapp.base.BaseFragment
 import dev.chu.toyapp.databinding.FragmentUsersBinding
 import dev.chu.toyapp.etc.extensions.TAG
 

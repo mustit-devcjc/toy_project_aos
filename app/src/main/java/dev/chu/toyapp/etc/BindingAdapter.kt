@@ -14,9 +14,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dev.chu.datamodule.LoadingState
 import dev.chu.toyapp.R
 import dev.chu.toyapp.common.Const
-import dev.chu.toyapp.data.LoadingState
 import dev.chu.toyapp.entity.GithubRepos
 import dev.chu.toyapp.entity.Users
 import dev.chu.toyapp.etc.extensions.replaceFragment

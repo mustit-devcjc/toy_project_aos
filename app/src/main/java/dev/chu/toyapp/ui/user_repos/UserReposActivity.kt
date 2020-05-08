@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
+import dev.chu.basemodule.BaseActivity
 import dev.chu.toyapp.R
-import dev.chu.toyapp.base.BaseActivity
 import dev.chu.toyapp.common.Const
 import dev.chu.toyapp.databinding.ActivityUserReposBinding
 import dev.chu.toyapp.etc.extensions.TAG

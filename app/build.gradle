@@ -97,4 +97,8 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
     // di
+
+    // module
+    implementation project(':DataModule')
+    implementation project(':BaseModule')
 }

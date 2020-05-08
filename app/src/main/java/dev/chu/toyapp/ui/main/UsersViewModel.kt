@@ -3,7 +3,7 @@ package dev.chu.toyapp.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.chu.toyapp.data.LoadingState
+import dev.chu.datamodule.LoadingState
 import dev.chu.toyapp.data.repository.UserRepository
 import dev.chu.toyapp.entity.Users
 

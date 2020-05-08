@@ -1,2 +1,4 @@
 rootProject.name='ToyApp'
-include ':app'
+include ':app', ':DataModule', ':BaseModule'
+project(':DataModule').projectDir = new File('/Users/chu/AndroidStudioProjects/module/DataModule')
+project(':BaseModule').projectDir = new File('/Users/chu/AndroidStudioProjects/module/BaseModule')

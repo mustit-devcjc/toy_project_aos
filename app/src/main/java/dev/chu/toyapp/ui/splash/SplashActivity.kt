@@ -1,7 +1,6 @@
 package dev.chu.toyapp.ui.splash
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -10,9 +9,9 @@ import android.os.Environment
 import android.os.Handler
 import androidx.annotation.LayoutRes
 import androidx.core.app.ActivityCompat
+import dev.chu.basemodule.BaseActivity
 import dev.chu.toyapp.GlobalApplication
 import dev.chu.toyapp.R
-import dev.chu.toyapp.base.BaseActivity
 import dev.chu.toyapp.databinding.ActivitySplashBinding
 import dev.chu.toyapp.ui.main.MainActivity
 import java.io.File
@@ -21,8 +20,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     @LayoutRes
     override fun getLayoutRes(): Int = R.layout.activity_splash
 
-    // region make file for cache
-    // permission is automatically granted on sdk<23 upon installation
+    // region make file for cache - permission is automatically granted on sdk<23 upon installation
     private val isStoragePermissionGranted: Boolean
         get() = if (Build.VERSION.SDK_INT >= 23) {
             if (GlobalApplication.getInstance()

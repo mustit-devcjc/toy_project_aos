@@ -2,7 +2,7 @@ package dev.chu.toyapp.ui.main.adapter
 
 import android.view.View
 import androidx.core.view.ViewCompat
-import dev.chu.toyapp.base.BaseViewHolder
+import dev.chu.basemodule.BaseViewHolder
 import dev.chu.toyapp.databinding.ItemRepoBinding
 import dev.chu.toyapp.entity.GithubRepos
 import dev.chu.toyapp.ui.repo_detail.RepoDetailActivity

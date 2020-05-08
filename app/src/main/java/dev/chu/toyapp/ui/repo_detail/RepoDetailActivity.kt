@@ -5,18 +5,14 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.LayoutRes
 import androidx.core.os.bundleOf
 import dev.chu.toyapp.R
-import dev.chu.toyapp.base.BaseActivity
 import dev.chu.toyapp.base.DatabindingActivity
 import dev.chu.toyapp.common.Const
 import dev.chu.toyapp.databinding.ActivityRepoDetailBinding
 import dev.chu.toyapp.entity.GithubRepos
-import dev.chu.toyapp.etc.extensions.TAG
 import dev.chu.toyapp.etc.extensions.applyMaterialTransform
 
 //class RepoDetailActivity : BaseActivity<ActivityRepoDetailBinding>() {

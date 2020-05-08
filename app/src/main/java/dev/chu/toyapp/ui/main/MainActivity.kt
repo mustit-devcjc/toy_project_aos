@@ -1,13 +1,9 @@
 package dev.chu.toyapp.ui.main
 
 import android.os.Bundle
-import android.util.Log
-import androidx.annotation.LayoutRes
 import dev.chu.toyapp.R
-import dev.chu.toyapp.base.BaseActivity
 import dev.chu.toyapp.base.DatabindingActivity
 import dev.chu.toyapp.databinding.ActivityMainBinding
-import dev.chu.toyapp.etc.extensions.TAG
 import dev.chu.toyapp.etc.extensions.applyExitMaterialTransform
 import dev.chu.toyapp.etc.extensions.replaceFragment
 import dev.chu.toyapp.etc.handler.BackPressCloseHandler

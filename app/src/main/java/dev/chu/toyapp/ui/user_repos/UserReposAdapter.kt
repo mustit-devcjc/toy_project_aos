@@ -2,9 +2,9 @@ package dev.chu.toyapp.ui.user_repos
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import dev.chu.basemodule.BaseAdapter
+import dev.chu.basemodule.BaseViewHolder
 import dev.chu.toyapp.R
-import dev.chu.toyapp.base.BaseAdapter
-import dev.chu.toyapp.base.BaseViewHolder
 import dev.chu.toyapp.entity.GithubRepos
 
 class UserReposAdapter (

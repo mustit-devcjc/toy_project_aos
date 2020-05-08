@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import dev.chu.toyapp.data.LoadingState
-import dev.chu.toyapp.data.remote.Api
+import dev.chu.datamodule.Api
+import dev.chu.datamodule.LoadingState
+import dev.chu.toyapp.GlobalApplication
+import dev.chu.toyapp.common.Const
 import dev.chu.toyapp.data.remote.ApiService
 import dev.chu.toyapp.entity.GithubRepos
 import dev.chu.toyapp.etc.extensions.TAG
@@ -19,7 +21,7 @@ class ReposRepository {
 
     var isLoading: MutableLiveData<LoadingState> = MutableLiveData(LoadingState.SUCCESS)
 
-    private val api: ApiService = Api().createService(ApiService::class.java)
+    private val api: ApiService = Api(GlobalApplication.getInstance()).createService(ApiService::class.java, Const.BASE_URL)
     private var _listGithubRepos: MutableLiveData<List<GithubRepos>> = MutableLiveData()
 
     val listGithubRepos: LiveData<List<GithubRepos>>
