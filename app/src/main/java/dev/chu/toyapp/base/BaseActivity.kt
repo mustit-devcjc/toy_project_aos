@@ -26,3 +26,11 @@ abstract class BaseActivity<T: ViewDataBinding>: AppCompatActivity() {
         initView(savedInstanceState)
     }
 }
+
+//abstract class DatabindingActivity : AppCompatActivity() {
+//
+//    protected inline fun <reified T : ViewDataBinding> binding(
+//        @LayoutRes resId: Int
+//    ): Lazy<T> = lazy { DataBindingUtil.setContentView<T>(this, resId) }
+//
+//}

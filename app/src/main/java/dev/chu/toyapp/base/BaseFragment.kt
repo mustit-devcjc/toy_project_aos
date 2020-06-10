@@ -32,3 +32,13 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         setView(view, savedInstanceState, arguments)
     }
 }
+
+//abstract class DatabindingFragment : Fragment() {
+//
+//    protected inline fun <reified T : ViewDataBinding> binding(
+//        inflater: LayoutInflater,
+//        @LayoutRes resId: Int,
+//        container: ViewGroup?
+//    ): T = DataBindingUtil.inflate(inflater, resId, container, false)
+//
+//}
